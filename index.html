@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JV Partnership Web App</title>
+
+  <!-- Main App Styles -->
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="modules/calculator/css/style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="sidebar">
+      <button id="toggleSidebar">☰</button>
+      <nav>
+        <ul>
+          <li data-section="overview-setup">1. Overview & Setup</li>
+          <li data-section="working-capital-simulator">2. Working Capital Simulator</li>
+          <li data-section="contribution-equity">3. Contribution & Equity</li>
+          <li data-section="roles-responsibilities">4. Roles & Responsibilities</li>
+          <li data-section="profit-reserve-policy">5. Profit & Reserve Policy</li>
+          <li data-section="governance-matrix">6. Governance Matrix</li>
+          <li class="collapsible">Advanced ▼</li>
+          <ul class="submenu">
+            <li data-section="lockin-exit-buyout">7. Lock-in & Exit</li>
+            <li data-section="conflict-resolution">8. Conflict Resolution</li>
+            <li data-section="scenario-simulator">9. Scenario Simulator</li>
+            <li data-section="mou-drafting">10. MoU Drafting Room</li>
+            <li data-section="config-archive">11. Config & Archive</li>
+          </ul>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main id="main-content">
+        <section id="overview-setup" class="content-section active">
+        <h2>1. Overview & Setup</h2>
+
+        <!-- JV Overview -->
+        <div class="card">
+            <label for="jv-summary"><strong>JV Overview:</strong></label>
+            <textarea id="jv-summary" rows="4" placeholder="Enter a summary of the JV's purpose, vision, and structure..."></textarea>
+        </div>
+
+        <!-- Partner Profile Editor -->
+        <div class="card">
+            <h3>Partner Profiles</h3>
+            <div class="partner-grid">
+            <div class="partner-profile">
+                <label>Name (A):</label>
+                <input type="text" id="partner-a" placeholder="Partner A Name" />
+                <label>Role:</label>
+                <input type="text" id="role-a" placeholder="Finance / CapEx" />
+                <label>Avatar:</label>
+                <input type="file" id="avatar-a" accept="image/*" />
+            </div>
+            <div class="partner-profile">
+                <label>Name (B):</label>
+                <input type="text" id="partner-b" placeholder="Partner B Name" />
+                <label>Role:</label>
+                <input type="text" id="role-b" placeholder="Market / Sales" />
+                <label>Avatar:</label>
+                <input type="file" id="avatar-b" accept="image/*" />
+            </div>
+            <div class="partner-profile">
+                <label>Name (C):</label>
+                <input type="text" id="partner-c" placeholder="Partner C Name" />
+                <label>Role:</label>
+                <input type="text" id="role-c" placeholder="Operations / Plant" />
+                <label>Avatar:</label>
+                <input type="file" id="avatar-c" accept="image/*" />
+            </div>
+            </div>
+        </div>
+
+        <!-- Project Timeline -->
+        <div class="card">
+            <h3>Project Timeline</h3>
+            <ul class="timeline">
+            <li><strong>Today:</strong> JV Planning Begins</li>
+            <li><strong>+1 Week:</strong> Financial Model Finalization</li>
+            <li><strong>+2 Weeks:</strong> MoU Draft Ready</li>
+            <li><strong>+3 Weeks:</strong> Legal Signing & Kickoff</li>
+            </ul>
+        </div>
+
+        <!-- Launch CTA -->
+        <div class="card">
+            <button id="start-discussion">🚀 Start Discussion</button>
+        </div>
+        </section>
+
+      <section id="working-capital-simulator" class="content-section">
+        <h2>2. Working Capital Simulator</h2>
+        
+        <!-- Tab Navigation -->
+        <div class="calculator-tab-navigation">
+          <button class="calculator-tab-button active" onclick="showCalculatorTab('cashflow')">Cash Flow Simulator</button>
+          <button class="calculator-tab-button" onclick="showCalculatorTab('pnl')">Profit & Loss Statement</button>
+          <button class="calculator-tab-button" onclick="showCalculatorTab('balance')">Balance Sheet</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div id="cashflow-tab" class="calculator-tab-content active">
+          <!-- Content will be loaded here -->
+        </div>
+        <div id="pnl-tab" class="calculator-tab-content">
+          <!-- Content will be loaded here -->
+        </div>
+        <div id="balance-tab" class="calculator-tab-content">
+          <!-- Content will be loaded here -->
+        </div>
+      </section>
+      <section id="contribution-equity" class="content-section">
+        <h2>3. Contribution & Equity Builder</h2>
+
+        <!-- Manual Contribution Table -->
+        <div class="card">
+            <h3>Manual Contribution Entry</h3>
+            <table class="contribution-table">
+            <thead>
+                <tr>
+                <th>Partner</th>
+                <th>Description</th>
+                <th>Value (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>Partner A</td>
+                <td>Existing CapEx (Plant)</td>
+                <td><input type="number" id="capex-a" value="20000000" /></td>
+                </tr>
+                <tr>
+                <td>Partner BC</td>
+                <td>Working Capital</td>
+                <td><input type="number" id="wc-bc" /></td>
+                </tr>
+                <tr>
+                <td>Partner BC</td>
+                <td>Market Access, Engineering & Operations Value</td>
+                <td><input type="number" id="market-ops-bc" value="5000000" /></td>
+                </tr>
+                <tr>
+                <td>Partner BC</td>
+                <td>Plant Renovation & Setup</td>
+                <td><input type="number" id="setup-bc" value="5000000" disabled /></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+
+        <!-- Equity Split Visual -->
+        <div class="card">
+            <h3>Equity Split & Financial Dashboard</h3>
+            <div id="equity-display" style="padding: 1.5rem; background: var(--color-bg); border-radius: 8px;">
+                <!-- Horizontal Stacked Bar with Ruler -->
+                <div style="margin-bottom: 2.5rem;">
+                    <!-- Contribution Ruler Scale -->
+                    <div style="position: relative; height: 30px; margin-bottom: 0.5rem;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--text-muted);"></div>
+                        <!-- Scale marks -->
+                        <div id="ruler-marks" style="position: relative; height: 100%;">
+                            <!-- Marks will be generated dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Equity Bar -->
+                    <div style="position: relative; height: 50px; background: var(--color-sidebar-dark); border-radius: 6px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);">
+                        <div id="bar-a" style="position: absolute; left: 0; top: 0; height: 100%; background: linear-gradient(135deg, var(--accent-primary), #5ee6d8); transition: width 0.3s ease;">
+                            <span id="bar-a-label" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: var(--primary-dark); font-weight: bold; text-shadow: 0 1px 2px rgba(0,0,0,0.1);"></span>
+                        </div>
+                        <div id="bar-bc" style="position: absolute; top: 0; height: 100%; background: linear-gradient(135deg, var(--accent-secondary), #3a8885); transition: all 0.3s ease;">
+                            <span id="bar-bc-label" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Financial Metrics Dashboard -->
+                <div style="background: var(--color-sidebar-dark); border-radius: 8px; padding: 1.5rem; margin-top: 2rem;">
+                    <!-- Partner Headers -->
+                    <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                        <div style="text-align: right; padding-right: 1rem;">
+                            <div style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-weight: 600; color: var(--accent-primary);">Partner A</span>
+                                <div style="width: 12px; height: 12px; background: var(--accent-primary); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                        <div></div>
+                        <div style="text-align: left; padding-left: 1rem;">
+                            <div style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 12px; height: 12px; background: var(--accent-secondary); border-radius: 2px;"></div>
+                                <span style="font-weight: 600; color: var(--accent-secondary);">Partner BC</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Metrics Rows -->
+                    <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                        <!-- Equity Share -->
+                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: center;">
+                            <div style="text-align: right; font-size: 1.5rem; font-weight: bold; color: var(--accent-primary);" id="equity-a">40%</div>
+                            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem; min-width: 140px;">Equity Share</div>
+                            <div style="text-align: left; font-size: 1.5rem; font-weight: bold; color: var(--accent-secondary);" id="equity-bc">60%</div>
+                        </div>
+                        
+                        <!-- Contribution -->
+                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: center;">
+                            <div style="text-align: right; font-size: 1.1rem; color: var(--text-light);">₹<span id="contrib-a">0</span></div>
+                            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem; min-width: 140px;">Capital Contribution</div>
+                            <div style="text-align: left; font-size: 1.1rem; color: var(--text-light);">₹<span id="contrib-bc">0</span></div>
+                        </div>
+                        
+                        <!-- Monthly Dividend -->
+                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: center; padding-top: 1rem; border-top: 1px solid rgba(197, 198, 199, 0.1);">
+                            <div style="text-align: right; font-size: 1rem; color: var(--success);">₹<span id="monthly-a">0</span></div>
+                            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem; min-width: 140px;">Monthly Dividend*</div>
+                            <div style="text-align: left; font-size: 1rem; color: var(--success);">₹<span id="monthly-bc">0</span></div>
+                        </div>
+                        
+                        <!-- Quarterly Profit -->
+                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: center;">
+                            <div style="text-align: right; font-size: 1rem; color: var(--success);">₹<span id="quarterly-a">0</span></div>
+                            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem; min-width: 140px;">Quarterly Profit*</div>
+                            <div style="text-align: left; font-size: 1rem; color: var(--success);">₹<span id="quarterly-bc">0</span></div>
+                        </div>
+                        
+                        <!-- Annual Profit -->
+                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: center;">
+                            <div style="text-align: right; font-size: 1.1rem; font-weight: 600; color: var(--success);">₹<span id="annual-a">0</span></div>
+                            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem; min-width: 140px;">Annual Profit*</div>
+                            <div style="text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--success);">₹<span id="annual-bc">0</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer -->
+                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(197, 198, 199, 0.2);">
+                        <div style="text-align: center;">
+                            <div style="color: var(--text-muted); font-size: 0.85rem;">Total Project Investment</div>
+                            <div style="font-size: 1.3rem; font-weight: 600; color: var(--text-light);">₹<span id="total-contributions">0</span></div>
+                        </div>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <div style="color: var(--text-muted); font-size: 0.75rem; font-style: italic;">
+                                *Based on quarterly net profit of ₹<span id="quarterly-net-profit">48,00,000</span> (from P&L)
+                            </div>
+                            <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 0.5rem;">
+                                <div>
+                                    <span style="color: var(--text-muted); font-size: 0.75rem;">Annual ROI:</span>
+                                    <span style="color: var(--success); font-weight: 600; font-size: 0.85rem;" id="annual-roi">38.4%</span>
+                                </div>
+                                <div>
+                                    <span style="color: var(--text-muted); font-size: 0.75rem;">Payback Period:</span>
+                                    <span style="color: var(--accent-primary); font-weight: 600; font-size: 0.85rem;" id="payback-period">2.6 years</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contribution Notes -->
+        <div class="card">
+            <h3>Notes / Rationale</h3>
+            <textarea id="contribution-notes" rows="4" placeholder="Add comments on how values were determined..."></textarea>
+        </div>
+
+        <!-- Export Action -->
+        <div class="card">
+            <button id="export-contribution">Export to MoU</button>
+        </div>
+      </section>
+
+      <section id="roles-responsibilities" class="content-section">
+        <h2>4. Roles & Responsibilities</h2>
+        <div class="placeholder"></div>
+      </section>
+
+      <section id="profit-reserve-policy" class="content-section">
+        <h2>5. Profit & Reserve Policy</h2>
+        <div class="placeholder"></div>
+      </section>
+
+      <section id="governance-matrix" class="content-section">
+        <h2>6. Governance Matrix</h2>
+        <div class="placeholder"></div>
+      </section>
+
+      <section id="lockin-exit-buyout" class="content-section">
+        <h2>7. Lock-in, Exit & Buyout</h2>
+        <div class="placeholder"></div>
+      </section>
+
+      <section id="conflict-resolution" class="content-section">
+        <h2>8. Conflict Resolution</h2>
+        <div class="placeholder"></div>
+      </section>
+
+      <section id="scenario-simulator" class="content-section">
+        <h2>9. Scenario Simulator</h2>
+        <div class="placeholder"></div>
+      </section>
+
+      <section id="mou-drafting" class="content-section">
+        <h2>10. MoU Drafting Room</h2>
+        <div class="placeholder"></div>
+      </section>
+
+      <section id="config-archive" class="content-section">
+        <h2>11. Config & Archive</h2>
+        <div class="placeholder"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  
+  <!-- Main App Logic -->
+  <script src="scripts/jvStore.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="modules/calculator/js/script.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+      // Initialize the calculator module after DOM is ready
+      initializeCalculatorModule();
+    });
+  </script>
+</body>
+</html>
